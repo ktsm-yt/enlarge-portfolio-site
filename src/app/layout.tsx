@@ -13,14 +13,14 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: {
-    default: "Craft Renovate | 東京のリノベーション・リフォーム専門",
-    template: "%s | Craft Renovate",
+    default: "Pure Creation | 東京のリノベーション・リフォーム専門",
+    template: "%s | Pure Creation",
   },
   description:
     "東京のリノベーション・リフォーム専門会社。マンション・戸建て・オフィスの施工実績多数。理想の空間をカタチにします。",
   keywords: ["リノベーション", "リフォーム", "東京", "マンション", "戸建て"],
   openGraph: {
-    title: "Craft Renovate",
+    title: "Pure Creation",
     description: "東京のリノベーション・リフォーム専門会社",
     type: "website",
   },

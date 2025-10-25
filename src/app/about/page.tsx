@@ -28,7 +28,7 @@ export default function AboutPage() {
   ]
 
   const companyInfo = [
-    { label: '会社名', value: '株式会社 Craft Renovate' },
+    { label: '会社名', value: '株式会社 Pure Creation' },
     { label: '設立', value: '2010年4月' },
     { label: '代表者', value: '代表取締役 山田 太郎' },
     { label: '資本金', value: '3,000万円' },
@@ -59,7 +59,7 @@ export default function AboutPage() {
               カタチにする
             </h1>
             <p className="text-lg text-neutral-700 leading-relaxed">
-              Craft Renovateは、お客様の「理想の暮らし」を実現するリノベーション・リフォーム専門会社です。
+              Pure Creationは、お客様の「理想の暮らし」を実現するリノベーション・リフォーム専門会社です。
               一人ひとりのライフスタイルに合わせた空間づくりを、確かな技術力でサポートします。
             </p>
           </motion.div>
@@ -78,7 +78,7 @@ export default function AboutPage() {
           >
             <h2 className="text-3xl font-bold mb-4">選ばれる理由</h2>
             <p className="text-neutral-600">
-              Craft Renovateが多くのお客様に選ばれる4つの理由
+              Pure Creationが多くのお客様に選ばれる4つの理由
             </p>
           </motion.div>
 

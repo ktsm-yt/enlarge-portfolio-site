@@ -1,6 +1,6 @@
-# Craft Renovate - リノベーションサイト
+# Pure Creation - リノベーションサイト
 
-Next.js 14 + TypeScript + Tailwind CSS で構築したリノベーション会社のポートフォリオサイトです。
+Next.js 16 + TypeScript + Tailwind CSS で構築したリノベーション会社のポートフォリオサイトです。
 
 ## 🚀 セットアップ完了
 

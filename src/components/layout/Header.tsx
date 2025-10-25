@@ -13,7 +13,7 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold text-primary">
-            Craft Renovate
+            Pure Creation
           </Link>
 
           {/* Desktop Navigation */}

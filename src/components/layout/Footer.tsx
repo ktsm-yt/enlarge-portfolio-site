@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Craft Renovate</h3>
+            <h3 className="text-xl font-bold mb-4">Pure Creation</h3>
             <p className="text-neutral-400 mb-4">
               東京のリノベーション・リフォーム専門会社
             </p>
@@ -95,7 +95,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-neutral-800 mt-8 pt-8 text-center text-neutral-400 text-sm">
-          <p>&copy; {new Date().getFullYear()} Craft Renovate. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Pure Creation. All rights reserved.</p>
         </div>
       </div>
     </footer>

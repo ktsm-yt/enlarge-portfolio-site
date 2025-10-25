@@ -1,10 +1,11 @@
 import { Hero } from "@/components/home/Hero";
+import { CasesSection } from "@/components/home/CasesSection";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      {/* 他のセクションは後で追加 */}
+      <CasesSection />
     </>
   );
 }

@@ -1,61 +1,113 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 
+const heroImages = [
+  {
+    url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&h=1080&fit=crop',
+    title: '理想の空間を\nカタチにする',
+    subtitle: 'マンション・戸建てのリノベーション',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&h=1080&fit=crop',
+    title: '暮らしを\n豊かにする空間',
+    subtitle: 'あなたらしい住まいづくりを実現',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop',
+    title: 'デザインと\n機能性の融合',
+    subtitle: '確かな技術力でサポート',
+  },
+]
+
 export function Hero() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroImages.length)
+    }, 5000)
+
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 z-10" />
-        <div className="w-full h-full bg-neutral-200" />
-        {/* 後で実際の画像に置き換え */}
-      </div>
+      {/* Background Image Slider */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }}
+          className="absolute inset-0 z-0"
+        >
+          <Image
+            src={heroImages[currentIndex].url}
+            alt={heroImages[currentIndex].title}
+            fill
+            className="object-cover"
+            priority
+            quality={90}
+          />
+          <div className="absolute inset-0 bg-black/40 z-10" />
+        </motion.div>
+      </AnimatePresence>
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-6xl font-bold text-neutral-900 mb-6"
-        >
-          理想の空間を
-          <br />
-          カタチにする
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg md:text-xl text-neutral-700 mb-8 max-w-2xl mx-auto"
-        >
-          東京のリノベーション・リフォーム専門会社
-          <br />
-          お客様の理想の住まいを実現します
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <Link
-            href="/cases"
-            className="px-8 py-4 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors font-medium"
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`content-${currentIndex}`}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.8 }}
           >
-            施工事例を見る
-          </Link>
-          <Link
-            href="/contact"
-            className="px-8 py-4 bg-white text-primary border-2 border-primary rounded-lg hover:bg-primary/5 transition-colors font-medium"
-          >
-            無料相談予約
-          </Link>
-        </motion.div>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 whitespace-pre-line">
+              {heroImages[currentIndex].title}
+            </h1>
+
+            <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-12 max-w-2xl mx-auto">
+              {heroImages[currentIndex].subtitle}
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/cases"
+                className="px-8 py-4 bg-white text-neutral-900 rounded-lg hover:bg-neutral-100 transition-colors font-bold"
+              >
+                施工事例を見る
+              </Link>
+              <Link
+                href="/contact"
+                className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-lg hover:bg-white/20 transition-colors font-bold"
+              >
+                無料相談予約
+              </Link>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+        {heroImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-3 h-3 rounded-full transition-all ${
+              index === currentIndex
+                ? 'bg-white w-8'
+                : 'bg-white/50 hover:bg-white/75'
+            }`}
+            aria-label={`スライド ${index + 1}`}
+          />
+        ))}
       </div>
 
       {/* Scroll Indicator */}
@@ -65,11 +117,11 @@ export function Hero() {
         transition={{ delay: 1, duration: 0.8 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
-        <div className="w-6 h-10 border-2 border-neutral-900/50 rounded-full flex justify-center pt-2">
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center pt-2">
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-1.5 bg-neutral-900/50 rounded-full"
+            className="w-1.5 h-1.5 bg-white/50 rounded-full"
           />
         </div>
       </motion.div>
